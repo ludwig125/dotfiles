@@ -65,6 +65,8 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 # lsコマンドの補完候補にも色付き表示
+# LS_COLORSを変えて、ディレクトリの背景色を見やすくする
+LS_COLORS=$LS_COLORS:'ow=30;42:' ; export LS_COLORS
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 # kill の候補にも色付き表示
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
@@ -156,25 +158,18 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 
+# git
+alias g='git'
+
+# kubectl
+alias k='kubectl'
+
 # python
-#alias python=/usr/bin/python2.7
-alias python=/usr/local/bin/python2
+alias python=/usr/bin/python3.6
 
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
-    alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
-fi
-
-# 上の設定がうまく行かないので以下のaliasでpbcopyを使う
+# 下のaliasでpbcopyを使う
 alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
 # zsh-completions(補完機能)の設定
 if [ -e /usr/local/share/zsh-completions ]; then
@@ -197,22 +192,28 @@ case ${OSTYPE} in
         ;;
 esac
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 # vim:set ft=zsh:
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#eval "$(pyenv virtualenv-init -)"
+#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 export PATH=~/scala-2.12.5/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/ludwig125/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ludwig125/google-cloud-sdk/path.zsh.inc'; fi
+#SSH
+eval `ssh-agent` > /dev/null
+ssh-add /home/ludwig125/.ssh/id_rsa >& /dev/null
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/ludwig125/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ludwig125/google-cloud-sdk/completion.zsh.inc'; fi
+# go のPATHを指定
+export GOROOT=/usr/local/go
+#export GOPATH=/home/$USER/go
+export GOPATH=/mnt/c/wsl/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # go test alias
 # https://dave.cheney.net/practical-go/presentations/gophercon-singapore-2019.html#_design_apis_that_are_hard_to_misuse
@@ -222,3 +223,36 @@ cover () {
     && go tool cover -func=$t \
     && unlink $t
 }
+
+# Docker for Windows
+#export DOCKER_HOST='tcp://0.0.0.0:2375'
+#export DOCKER_HOST=unix:///run/guest-services/docker.sock
+
+
+# 出力結果からgrepを除外してIDなどを付与する
+pss () {
+    ps aux | grep -E "PID|$1" | grep -v grep
+}
+
+# open でWindowsがわのファイルを開く
+# https://qiita.com/aohmusi/items/a46e3267ab506cedd1ad
+if [[ $(uname -r) =~ Microsoft$ ]]; then
+  function open(){
+    if [ $# -eq 1 ]; then
+      readlink -f $1 |xargs wslpath -m| xargs cmd.exe /c start
+    else
+      echo "ERROR: argument is missing."
+      echo "Please specify file/path to execute by Windows"
+      echo "open [file/path]"
+    fi
+  }
+fi
+alias -s {ppt,pptx,xls,xlsx,doc,docx}=open
+
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ludwig125/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ludwig125/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ludwig125/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ludwig125/google-cloud-sdk/completion.zsh.inc'; fi
