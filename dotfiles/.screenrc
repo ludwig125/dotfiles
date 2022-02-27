@@ -1,0 +1,41 @@
+# 起動時のメッセージをoff にする
+startup_message off
+
+# 接続が切れた時に自動的にdetach する
+autodetach on
+
+# bell の設定
+vbell off
+vbell_msg "^G"
+
+# scrollback の指定
+defscrollback 10000
+
+# エスケープ文字
+escape ^Z^Z
+
+# screen の中でプロセスが死んだときに、エスケープを押すまではウインドウが残る
+zombie ^[
+
+# ウィンドウのタイトル指定
+shelltitle '$ |bash'
+
+## ESCAPE-x のスクリーンロックの無効化(20130415)
+bind ^x
+
+#スクロールで履歴を見るようにする
+termcapinfo xterm* ti@:te@
+
+#lessやviなどを閉じた時に、表示内容が残るようにする
+altscreen on
+
+#アクティブなウィンドウの色反転
+hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
+
+# Linux/screenの機能で履歴をスクロールして見る
+# https://blog.goo.ne.jp/takuminews/e/9d494d74623d5164dc187b7f63bedb02
+termcapinfo linux ti@:te@
+termcapinfo xterm ti@:te@
+termcapinfo xterm-color ti@:te@
+defscrollback 1024
+

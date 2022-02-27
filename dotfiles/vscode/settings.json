@@ -1,0 +1,80 @@
+{
+	"go.gopath": "/home/ludwig125/go",
+	"go.goroot": "/usr/local/go",
+	"go.formatTool": "goimports",
+	"editor.minimap.enabled": false,
+	"editor.fontSize": 16,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"terminal.integrated.fontSize": 16,
+	"go.toolsEnvVars": {
+		"GO111MODULE": "on",
+		"GOOS": "js",
+		"GOARCH": "wasm",
+		// "GOROOT": "/usr/local/go",
+		"GOBIN": "/home/ludwig125/go/bin",
+		"GOFLAGS": "-tags=integration"
+	},
+	"gopls": {
+		"buildFlags": ["-tags=!integration"]
+		//"experimentalWorkspaceModule": true
+	},
+	"git.enabled": true,
+	"git.enableSmartCommit": true,
+	"workbench.colorTheme": "Visual Studio Dark",
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"go.autocompleteUnimportedPackages": true,
+	"go.delveConfig": {},
+	"terminal.integrated.copyOnSelection": true,
+	"files.associations": {},
+	"[go]": {
+		"editor.snippetSuggestions": "none",
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true,
+			"source.fixAll": true,
+			"source.fixAll.eslint": true
+		}
+	},
+	"code-runner.clearPreviousOutput": true,
+	"code-runner.runInTerminal": true,
+	"editor.autoClosingQuotes": "always",
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+	"workbench.iconTheme": "vscode-icons",
+	"git.autofetch": true,
+	"git.ignoreMissingGitWarning": true,
+	"editor.hover.enabled": true,
+	"editor.hover.delay": 100,
+	"git.path": "C:\\wsl\\git.bat",
+	"vsicons.dontShowNewVersionMessage": true,
+	"window.zoomLevel": 0,
+	"editor.mouseWheelZoom": true,
+	"go.installDependenciesWhenBuilding": true,
+	"go.alternateTools": {},
+	"remote.SSH.defaultForwardedPorts": [],
+	"go.toolsManagement.autoUpdate": true,
+	"go.lintTool": "golangci-lint",
+	"window.customMenuBarAltFocus": false,
+	"editor.formatOnSave": true,
+	"prettier.useTabs": true,
+	"html.format.enable": false,
+	"bracket-pair-colorizer-2.depreciation-notice": false,
+	"[markdown]": {
+		"editor.wordWrap": "on",
+		"editor.quickSuggestions": {
+			"other": true,
+			"comments": false,
+			"strings": false
+		},
+		"editor.snippetSuggestions": "top",
+		"editor.scrollBeyondLastLine": false,
+		"editor.padding.bottom": 250
+	},
+	"markdown-preview-enhanced.breakOnSingleNewLine": true,
+	"markdown-preview-enhanced.scrollSync": true,
+	"markdown-preview-enhanced.mathRenderingOption": "MathJax",
+	"markdown-preview-enhanced.codeBlockTheme": "github.css",
+	"markdown.preview.fontSize": 16
+}
