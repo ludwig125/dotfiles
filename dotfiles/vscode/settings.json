@@ -1,11 +1,23 @@
 {
 	"go.gopath": "/home/ludwig125/go",
 	"go.goroot": "/usr/local/go",
-	"go.formatTool": "goimports",
 	"editor.minimap.enabled": false,
 	"editor.fontSize": 16,
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"[html]": {
+		// 既定のフォーマッター
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		// 既定のフォーマッター
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"terminal.integrated.fontSize": 16,
+	"git.enabled": true,
+	"git.enableSmartCommit": true,
+	"go.useLanguageServer": true,
+	"go.formatTool": "goimports",
 	"go.toolsEnvVars": {
 		"GO111MODULE": "on",
 		"GOOS": "js",
@@ -15,29 +27,28 @@
 		"GOFLAGS": "-tags=integration"
 	},
 	"gopls": {
-		"buildFlags": ["-tags=!integration"]
+		"buildFlags": [
+			"-tags=!integration"
+		],
+		"hoverKind": "SynopsisDocumentation",
+		"usePlaceholders": true,
+		"staticcheck": false
 		//"experimentalWorkspaceModule": true
 	},
-	"git.enabled": true,
-	"git.enableSmartCommit": true,
-	"workbench.colorTheme": "Visual Studio Dark",
-	"explorer.confirmDragAndDrop": false,
-	"explorer.confirmDelete": false,
 	"go.autocompleteUnimportedPackages": true,
 	"go.delveConfig": {},
-	"terminal.integrated.copyOnSelection": true,
-	"files.associations": {},
 	"[go]": {
-		"editor.snippetSuggestions": "none",
+		// "editor.defaultFormatter": "golang.go",
 		"editor.formatOnSave": true,
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": true,
 			"source.fixAll": true,
 			"source.fixAll.eslint": true
-		}
+		},
+		"editor.snippetSuggestions": "none",
 	},
-	"code-runner.clearPreviousOutput": true,
-	"code-runner.runInTerminal": true,
+	"terminal.integrated.copyOnSelection": true,
+	"files.associations": {},
 	"editor.autoClosingQuotes": "always",
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": true,
@@ -49,14 +60,12 @@
 	"editor.hover.delay": 100,
 	"git.path": "C:\\wsl\\git.bat",
 	"vsicons.dontShowNewVersionMessage": true,
-	"window.zoomLevel": 0,
 	"editor.mouseWheelZoom": true,
 	"go.installDependenciesWhenBuilding": true,
 	"go.alternateTools": {},
-	"remote.SSH.defaultForwardedPorts": [],
 	"go.toolsManagement.autoUpdate": true,
 	"go.lintTool": "golangci-lint",
-	"window.customMenuBarAltFocus": false,
+	"remote.SSH.defaultForwardedPorts": [],
 	"editor.formatOnSave": true,
 	"prettier.useTabs": true,
 	"html.format.enable": false,
@@ -76,5 +85,11 @@
 	"markdown-preview-enhanced.scrollSync": true,
 	"markdown-preview-enhanced.mathRenderingOption": "MathJax",
 	"markdown-preview-enhanced.codeBlockTheme": "github.css",
-	"markdown.preview.fontSize": 16
+	"markdown.preview.fontSize": 16,
+	"window.customMenuBarAltFocus": false,
+	"window.zoomLevel": 0,
+	"workbench.colorTheme": "Visual Studio Dark",
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	}
 }
